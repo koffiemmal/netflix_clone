@@ -141,7 +141,7 @@ class _GetstartedButtonState extends State<GetstartedButton> {
                   
                 }
                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UserHomeScreen()));
+                    MaterialPageRoute(builder: (context) => AboutScreen()));
 
                 print(loading);
               });
