@@ -1,84 +1,177 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gozem_clone/features/home/screens/about_screen.dart';
+import 'package:gozem_clone/features/home/screens/home_page_screen.dart';
 import 'package:gozem_clone/features/home/screens/user_home_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final PageController _pageController = PageController();
+
+  int _currentPageIndex = 0;
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _currentPageIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title:  Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset('assets/Icons/netflix_logo.png', width: 150),
-            Row(
-              children: [
-                Text('Privacy  ', style: TextStyle(color: Colors.white)),
-                Text('Sign In', style: TextStyle(color: Colors.white)),
-              ],
-            )
-          ],
-        ),
-        
-      ),
-
-      body: Material(
-        
-        color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-           
+            Image.asset('assets/Icons/netflix_logo.png', width: 100),
             Container(
-              alignment: Alignment.center,
-              height: 580,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                
+              
+              
+              width: 200,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    'Unlimeted movies,TV shows and games  for  one low monthly fee.',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Watch anymore ,Cannot myLine.\n try The link bellow to sign up ',
-                    style: TextStyle(color: Colors.white),
-                    textAlign: TextAlign.center,
-                  )
+                  
+                   OutlinedButton(
+                      style: ButtonStyle(
+                          side: MaterialStateProperty.all(
+                              BorderSide(color: Color.fromARGB(255, 0, 0, 0)))),
+                      onPressed: () {
+                        print('erty');
+                      },
+                      child: Text(
+                        'Privacy',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                  OutlinedButton( style: ButtonStyle(
+                side: MaterialStateProperty.all(BorderSide(color: Colors.red))
+                  ), onPressed: () {
+                        print('erty');
+                      }, child: Text(
+                        'Sign In',
+                        style: TextStyle(color: Colors.white),
+                      )),
+               
                 ],
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Barre(const Color.fromARGB(255, 194, 23, 23)),
-                    Barre(Colors.grey),
-                    Barre(Colors.grey),
-                    Barre(Colors.grey)
-                  ],
-                ),
-                SizedBox(
-                  width: 3,
-                  height: 10,
-                ),
-                GetstartedButton(),
-              ],
             )
           ],
         ),
       ),
+      body: Stack(children: [
+        PageView(
+          controller: _pageController,
+          onPageChanged: _onPageChanged,
+          children: [
+            contentHome(
+                'Unlimited movies, TV shows, and more1.',
+                'Watch anymore ,Cannot myLine.\n try The link bellow to sign up'),
+            contentHome(
+                'Unlimited movies, TV shows, and more2.',
+                'Watch anymore ,Cannot myLine.\n try The link bellow to sign up2'),
+            contentHome(
+                'Unlimited movies, TV shows, and more3.',
+                'Watch anymore ,Cannot myLine.\n try The link bellow to sign up3'),
+            contentHome(
+                'Unlimited movies, TV shows, and more4.',
+                'Watch anymore ,Cannot myLine.\n try The link bellow to sign up4')
+          ],
+        ),
+        Positioned(
+            top: 625,
+            left: 180,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    for (int i = 0; i < 4; i++)
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        margin: EdgeInsets.only(right: 5),
+                        width: 5,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color:
+                              _currentPageIndex == i ? Colors.red : Colors.grey,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            )),
+        /*  Positioned(
+            top: 640,
+            left: 70,
+            child: SizedBox(
+                height: 50,
+                width: 250,
+                child: ColoredBox(
+                  color: Colors.red,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      
+                      if (_currentPageIndex < 3) {
+                        _pageController.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
+                            
+                      }
+                      /* else(
+                        _text = "get started";
+                      setState(() {
+                        
+                        void latance() async {
+                          await Future.delayed(Duration(seconds: 15));
+                        }
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AboutScreen()));
+
+                        
+                      })) */;
+                    },
+                    style: ElevatedButton.styleFrom(
+                      
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.red),
+                    child: Text('next'),
+                  ),
+                ))) */
+        if (_currentPageIndex < 3)
+          Positioned(
+              top: 640,
+              left: 280,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(200.0))),
+                  onPressed: () {
+                    if (_currentPageIndex < 3) {
+                      _pageController.nextPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeInOut);
+                    }
+                  },
+                  child: Icon(
+                    Icons.arrow_forward_ios_sharp,
+                    color: Colors.white,
+                  )))
+        else if (_currentPageIndex == 3)
+          Positioned(top: 640, left: 95, child: GetstartedButton())
+      ]),
     );
   }
 }
@@ -126,21 +219,18 @@ class _GetstartedButtonState extends State<GetstartedButton> {
 
     return SizedBox(
         height: 50,
-        width: 250,
+        width: 200,
         child: ColoredBox(
           color: Colors.red,
           child: ElevatedButton(
             onPressed: () {
-              /*  Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AboutScreen())); */
-
               setState(() {
                 loading = !loading;
                 void latance() async {
                   await Future.delayed(Duration(seconds: 15));
-                  
                 }
-               Navigator.push(context,
+
+                Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AboutScreen()));
 
                 print(loading);
