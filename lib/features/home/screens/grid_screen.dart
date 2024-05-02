@@ -6,15 +6,56 @@ import 'package:gozem_clone/features/home/screens/user_home_screen.dart';
 
 class GridScreen extends StatelessWidget {
   const GridScreen({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
+    
+
+    List<Image>ListImage = [
+      Image.asset('assets/Icons/1.png'),
+      Image.asset('assets/Icons/2.png'),
+       Image.asset('assets/Icons/3.png'),
+      Image.asset('assets/Icons/4.png'),
+       Image.asset('assets/Icons/5.png'),
+      Image.asset('assets/Icons/6.png'),
+         Image.asset('assets/Icons/1.png'),
+      Image.asset('assets/Icons/2.png'),
+      Image.asset('assets/Icons/3.png'),
+      Image.asset('assets/Icons/4.png'),
+      Image.asset('assets/Icons/5.png'),
+      Image.asset('assets/Icons/6.png'),
+         Image.asset('assets/Icons/1.png'),
+      Image.asset('assets/Icons/2.png'),
+      Image.asset('assets/Icons/3.png'),
+      Image.asset('assets/Icons/4.png'),
+      Image.asset('assets/Icons/5.png'),
+      Image.asset('assets/Icons/6.png'),
+         Image.asset('assets/Icons/1.png'),
+      Image.asset('assets/Icons/2.png'),
+      Image.asset('assets/Icons/3.png'),
+      Image.asset('assets/Icons/4.png'),
+      Image.asset('assets/Icons/5.png'),
+      Image.asset('assets/Icons/6.png'),
+         Image.asset('assets/Icons/1.png'),
+      Image.asset('assets/Icons/2.png'),
+      Image.asset('assets/Icons/3.png'),
+      Image.asset('assets/Icons/4.png'),
+      Image.asset('assets/Icons/5.png'),
+      Image.asset('assets/Icons/6.png'),
+         Image.asset('assets/Icons/1.png'),
+      Image.asset('assets/Icons/2.png'),
+      Image.asset('assets/Icons/3.png'),
+      Image.asset('assets/Icons/4.png'),
+      Image.asset('assets/Icons/5.png'),
+      Image.asset('assets/Icons/6.png'),
+    ];
     return  Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Color.fromARGB(255, 8, 8, 8),
         body: Column(
           children: [
-           /*  SizedBox(
+            SizedBox(
               height: 30,
             ),
             search(),
@@ -24,22 +65,23 @@ class GridScreen extends StatelessWidget {
             ),
            
           
-               Container(
              
-              height: 640,
              
-                child:ListView(
+                 Expanded(
+                // Ensures the grid fills available space
+                child: GridView.count(
+                  crossAxisCount: 4, // Two columns
+                  childAspectRatio:
+                      0.75, // Adjust aspect ratio for desired tile shape
+                  mainAxisSpacing: 10, // Spacing between rows
+                  crossAxisSpacing: 5, // Spacing between columns
                   shrinkWrap: true,
-                  children: [
-                  for (int i = 1;i<14;i++)
-                  searchVideos(i)
-                  ],
+                   // Wrap content if less than available space
+                  children: ListImage.map((image) => image).toList()
                 ),
-             ), */
-            
-          ],
-        ),
-        bottomNavigationBar: Container(
+              ),
+             ])
+             , bottomNavigationBar: Container(
           height: 60,
           color: const Color.fromARGB(255, 0, 0, 0),
           child: Row(
@@ -72,69 +114,14 @@ class GridScreen extends StatelessWidget {
               )
             ],
           ),
-        ));
-  }
-}
-
-class videos extends StatelessWidget {
-  const videos({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+        )
+            
     );
+        
+       
   }
 }
 
-class searchVideos extends StatelessWidget {
 
-  int files;
 
-   searchVideos(this.files);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 12,bottom: 5),
-      height: 80,
-      child: Row(
-        children: [
-          SizedBox(
-            child: Image.asset('assets/Icons/search${files}.png'),
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          SizedBox(
-            child: Text(
-              'Pinky blindears',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-          SizedBox(
-            child: Container(
-                margin: EdgeInsets.only(left: 70),
-                height: 120,
-                alignment: Alignment.center,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 35,
-                  width: 35,
-                  child: Image.asset('assets/Icons/play.png', width: 12),
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(204, 0, 0, 0),
-                      borderRadius: BorderRadius.circular(50.0),
-                      border: Border.all(
-                          width: 3,
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          style: BorderStyle.solid)),
-                )),
-          )
-        ],
-      ),
-    );
-  }
-}

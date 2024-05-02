@@ -187,10 +187,16 @@ class UserHomeScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Icon(
-              Icons.home,
-              color: Colors.grey,
+             InkWell(
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen() ));
+              },
+              child: Icon(
+                Icons.home,
+                color: Colors.grey,
+              ),
             ),
+            
             Icon(
               Icons.smart_display_rounded,
               color: Colors.grey,

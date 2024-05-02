@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:gozem_clone/features/home/screens/grid_screen.dart';
 import 'package:gozem_clone/features/home/screens/search_util.dart';
 import 'package:gozem_clone/features/home/screens/user_home_screen.dart';
 
@@ -21,21 +22,13 @@ class SearchScreen extends StatelessWidget {
               margin: EdgeInsets.only(top: 7, right: 270),
               child: Categories('Movies & Tv'),
             ),
-           
-          
-               Container(
-             
+            Container(
               height: 640,
-             
-                child:ListView(
-                  shrinkWrap: true,
-                  children: [
-                  for (int i = 1;i<14;i++)
-                  searchVideos(i)
-                  ],
-                ),
-             ),
-            
+              child: ListView(
+                shrinkWrap: true,
+                children: [for (int i = 1; i < 14; i++) searchVideos(i)],
+              ),
+            ),
           ],
         ),
         bottomNavigationBar: Container(
@@ -87,19 +80,19 @@ class videos extends StatelessWidget {
 }
 
 class searchVideos extends StatelessWidget {
-
   int files;
 
-   searchVideos(this.files);
+  searchVideos(this.files);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 12,bottom: 5),
+      margin: EdgeInsets.only(left: 12, bottom: 5),
       height: 80,
       child: InkWell(
-        onTap: (){
-          
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => GridScreen()));
         },
         child: Row(
           children: [

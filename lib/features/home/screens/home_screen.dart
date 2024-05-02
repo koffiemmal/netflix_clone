@@ -28,20 +28,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        title: Container(child: Row(
           children: [
-            Image.asset('assets/Icons/netflix_logo.png', width: 100),
+           Image.asset('assets/Icons/netflix_logo.png', width: 100),
             Container(
-              
-              
-              width: 200,
+           
+              width: 250,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  
-                   OutlinedButton(
+                  OutlinedButton(
                       style: ButtonStyle(
                           side: MaterialStateProperty.all(
                               BorderSide(color: Color.fromARGB(255, 0, 0, 0)))),
@@ -52,21 +51,32 @@ class _HomeScreenState extends State<HomeScreen> {
                         'Privacy',
                         style: TextStyle(color: Colors.white),
                       )),
-                  OutlinedButton( style: ButtonStyle(
-                side: MaterialStateProperty.all(BorderSide(color: Colors.red))
-                  ), onPressed: () {
+                  OutlinedButton(
+                      style: ButtonStyle(
+                          side: MaterialStateProperty.all(
+                              BorderSide(color: Colors.red))),
+                      onPressed: () {
                         print('erty');
-                      }, child: Text(
+                      },
+                      child: Text(
                         'Sign In',
                         style: TextStyle(color: Colors.white),
                       )),
-               
                 ],
               ),
             )
           ],
-        ),
+        )),
       ),
+    /*   Container(
+          width: double.infinity,
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset('assets/Icons/netflix_logo.png', width: 100),
+              */
+      
       body: Stack(children: [
         PageView(
           controller: _pageController,
