@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:gozem_clone/features/home/screens/home_screen.dart';
+import 'package:gozem_clone/features/home/screens/search_screen.dart';
 class UserHomeScreen extends StatelessWidget {
   const UserHomeScreen({super.key});
 
@@ -164,7 +165,6 @@ class UserHomeScreen extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 18),
                       height: 178,
                       width: 110,
-                      
                       child: ListView(
                         scrollDirection: Axis.horizontal,
                         children: [
@@ -173,7 +173,6 @@ class UserHomeScreen extends StatelessWidget {
                           vidoe('3.png'),
                           vidoe('4.png'),
                           vidoe('6.png')
-
                         ],
                       ),
                     ),
@@ -200,9 +199,14 @@ class UserHomeScreen extends StatelessWidget {
               Icons.emoji_emotions_outlined,
               color: Colors.grey,
             ),
-            Icon(
-              Icons.search_sharp,
-              color: Colors.grey,
+            InkWell(
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context)=> SearchScreen() ));
+              },
+              child: Icon(
+                Icons.search_sharp,
+                color: Colors.grey,
+              ),
             ),
             Icon(
               Icons.download_for_offline_outlined,
@@ -217,7 +221,7 @@ class UserHomeScreen extends StatelessWidget {
 
 class vidoe extends StatelessWidget {
   String files;
-   vidoe(this.files);
+  vidoe(this.files);
 
   @override
   Widget build(BuildContext context) {
@@ -227,9 +231,31 @@ class vidoe extends StatelessWidget {
       width: 110,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(2.0)),
       child: Container(
-        child: Image.asset(
-          'assets/Icons/${files}',
-          width: 110,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/Icons/${files}',
+                width: 110,
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.only(top: 20),
+                height: 120,
+                alignment: Alignment.center,
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  width: 40,
+                  child: Image.asset('assets/Icons/play.png', width: 20),
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(204, 0, 0, 0),
+                      borderRadius: BorderRadius.circular(50.0),
+                      border: Border.all(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          style: BorderStyle.solid)),
+                )),
+          ],
         ),
       ),
     );
@@ -253,66 +279,3 @@ class Categories extends StatelessWidget {
 }
 
 
-
-/* Column(
-          
-          children: [
-            
-            Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom:BorderSide.none
-                ),
-                gradient: LinearGradient(
-                  begin: Alignment.center,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.black, Color.fromARGB(61, 0, 0, 0)],
-                )
-              ),
-              height: 150,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 35,
-                  ),
-                  Container(
-                    height: 50,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.only(left: 5),
-                          child:
-                              Image.asset('assets/Icons/netsmall.png', width: 15),
-                        ),
-                        Container(
-                          width: 70,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SizedBox(
-                                child: Image.asset(
-                                  'assets/Icons/pleine_ecran.png',
-                                  width: 30,
-                                ),
-                              ),
-                              SizedBox(
-                                  child: Image.asset(
-                                'assets/Icons/profile.png',
-                                width: 30,
-                              ))
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                 
-                ],
-              ),
-            
-            
-        ),
-          ],
-        ) */

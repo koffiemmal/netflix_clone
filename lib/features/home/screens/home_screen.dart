@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         
                         void latance() async {
                           await Future.delayed(Duration(seconds: 15));
-                        }
+                  contentHome        }
 
                         Navigator.push(
                             context,
