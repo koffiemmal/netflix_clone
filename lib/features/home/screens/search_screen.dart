@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gozem_clone/features/home/screens/grid_screen.dart';
 import 'package:gozem_clone/features/home/screens/search_util.dart';
 import 'package:gozem_clone/features/home/screens/user_home_screen.dart';
@@ -22,8 +23,7 @@ class SearchScreen extends StatelessWidget {
               margin: EdgeInsets.only(top: 7, right: 270),
               child: Categories('Movies & Tv'),
             ),
-            Container(
-              height: 640,
+            Expanded(
               child: ListView(
                 shrinkWrap: true,
                 children: [for (int i = 1; i < 14; i++) searchVideos(i)],

@@ -67,7 +67,7 @@ class _searchState extends State<search> {
                       ))
               ],
             )),
-        if (isExpanded == true)
+        /* if (isExpanded == true)
           Container(
             margin: EdgeInsets.only(left: 10),
             child: OutlinedButton(
@@ -88,7 +88,7 @@ class _searchState extends State<search> {
                   style: TextStyle(
                       color: const Color.fromARGB(255, 129, 129, 129)),
                 )),
-          )
+          ) */
       ],
     );
   }

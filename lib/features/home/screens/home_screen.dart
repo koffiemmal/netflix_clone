@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gozem_clone/features/home/screens/about_screen.dart';
 import 'package:gozem_clone/features/home/screens/home_page_screen.dart';
 import 'package:gozem_clone/features/home/screens/user_home_screen.dart';
+import 'package:http/http.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,11 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
-        title: Container(child: Row(
+        title: Container(
+            child: Row(
           children: [
-           Image.asset('assets/Icons/netflix_logo.png', width: 100),
+            Image.asset('assets/Icons/netflix_logo.png', width: 100),
             Container(
-           
               width: 250,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,31 +69,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         )),
       ),
-    /*   Container(
-          width: double.infinity,
-          color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset('assets/Icons/netflix_logo.png', width: 100),
-              */
-      
       body: Stack(children: [
         PageView(
           controller: _pageController,
           onPageChanged: _onPageChanged,
           children: [
-            contentHome(
-                'Unlimited movies, TV shows, and more1.',
+            contentHome('Unlimited movies, TV shows, and more1.',
                 'Watch anymore ,Cannot myLine.\n try The link bellow to sign up'),
-            contentHome(
-                'Unlimited movies, TV shows, and more2.',
+            contentHome('Unlimited movies, TV shows, and more2.',
                 'Watch anymore ,Cannot myLine.\n try The link bellow to sign up2'),
-            contentHome(
-                'Unlimited movies, TV shows, and more3.',
+            contentHome('Unlimited movies, TV shows, and more3.',
                 'Watch anymore ,Cannot myLine.\n try The link bellow to sign up3'),
-            contentHome(
-                'Unlimited movies, TV shows, and more4.',
+            contentHome('Unlimited movies, TV shows, and more4.',
                 'Watch anymore ,Cannot myLine.\n try The link bellow to sign up4')
           ],
         ),
@@ -119,46 +107,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             )),
-        /*  Positioned(
-            top: 640,
-            left: 70,
-            child: SizedBox(
-                height: 50,
-                width: 250,
-                child: ColoredBox(
-                  color: Colors.red,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      
-                      if (_currentPageIndex < 3) {
-                        _pageController.nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
-                            
-                      }
-                      /* else(
-                        _text = "get started";
-                      setState(() {
-                        
-                        void latance() async {
-                          await Future.delayed(Duration(seconds: 15));
-                  contentHome        }
-
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AboutScreen()));
-
-                        
-                      })) */;
-                    },
-                    style: ElevatedButton.styleFrom(
-                      
-                        backgroundColor: Colors.red,
-                        foregroundColor: Colors.red),
-                    child: Text('next'),
-                  ),
-                ))) */
         if (_currentPageIndex < 3)
           Positioned(
               top: 640,
@@ -213,6 +161,31 @@ class GetstartedButton extends StatefulWidget {
 }
 
 class _GetstartedButtonState extends State<GetstartedButton> {
+  bool enable = false;
+
+  @override
+  void initState() {
+    testConnection().then((value) => setState(() {
+          enable = value;
+        }));
+
+    super.initState();
+
+    print("inistate");
+  }
+
+  Future<bool> testConnection() async {
+    Uri uri = Uri.parse("https://www.google.com");
+
+    try {
+      Response response = await get(uri);
+      print(response.body);
+      return (response.statusCode == 200);
+    } on Exception catch (e) {
+      return false;
+    }
+  }
+
   bool loading = false;
   @override
   Widget build(BuildContext context) {
@@ -231,25 +204,30 @@ class _GetstartedButtonState extends State<GetstartedButton> {
         height: 50,
         width: 200,
         child: ColoredBox(
-          color: Colors.red,
-          child: ElevatedButton(
-            onPressed: () {
-              setState(() {
-                loading = !loading;
-                void latance() async {
-                  await Future.delayed(Duration(seconds: 15));
-                }
+            color: Colors.red,
+            child: ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  loading = !loading;
 
-                Navigator.push(context,
+                  /*  void latance() async {
+                  await Future.delayed(Duration(seconds: 15));
+                } */
+
+                  /* Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AboutScreen()));
 
-                print(loading);
-              });
-            },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red, foregroundColor: Colors.red),
-            child: child,
-          ),
-        ));
+                loading = !loading;
+
+                print(loading); */
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: enable ? Colors.red : Colors.grey,
+
+                /*    backgroundColor: Colors.red, foregroundColor: Colors.red), */
+              ),
+              child: child,
+            )));
   }
 }
