@@ -1,10 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gozem_clone/features/BoutonNavigationBar/btnnavibar.dart';
 import 'package:gozem_clone/features/home/screens/home_screen.dart';
-import 'package:gozem_clone/features/home/screens/search_screen.dart';
+import 'package:gozem_clone/features/search/screen/search_screen.dart';
 class UserHomeScreen extends StatelessWidget {
   const UserHomeScreen({super.key});
 
@@ -181,46 +181,7 @@ class UserHomeScreen extends StatelessWidget {
               ))
         ],
       ),
-      bottomNavigationBar: Container(
-        height: 60,
-        color: const Color.fromARGB(255, 0, 0, 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-             InkWell(
-              onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context)=> HomeScreen() ));
-              },
-              child: Icon(
-                Icons.home,
-                color: Colors.grey,
-              ),
-            ),
-            
-            Icon(
-              Icons.smart_display_rounded,
-              color: Colors.grey,
-            ),
-            Icon(
-              Icons.emoji_emotions_outlined,
-              color: Colors.grey,
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context)=> SearchScreen() ));
-              },
-              child: Icon(
-                Icons.search_sharp,
-                color: Colors.grey,
-              ),
-            ),
-            Icon(
-              Icons.download_for_offline_outlined,
-              color: Colors.grey,
-            )
-          ],
-        ),
-      ),
+      bottomNavigationBar:Btnnav(),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gozem_clone/features/home/screens/about_screen.dart';
-import 'package:gozem_clone/features/home/screens/grid_screen.dart';
+import 'package:gozem_clone/features/about/screen/about_screen.dart';
+import 'package:gozem_clone/features/home/screens/debut_screen.dart';
+import 'package:gozem_clone/features/movies/screen/grid_screen.dart';
 import 'package:gozem_clone/features/home/screens/home_screen.dart';
-import 'package:gozem_clone/features/home/screens/user_home_screen.dart';
+import 'package:gozem_clone/features/users/screen/user_home_screen.dart';
 
 
 
@@ -16,7 +17,7 @@ class GozemCloneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    home: GridScreen(),   
+    home: DebutScreen(),   
     debugShowCheckedModeBanner: false,
     );
   }

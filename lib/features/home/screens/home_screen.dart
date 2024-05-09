@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gozem_clone/features/home/screens/about_screen.dart';
+import 'package:gozem_clone/features/about/screen/about_screen.dart';
 import 'package:gozem_clone/features/home/screens/home_page_screen.dart';
-import 'package:gozem_clone/features/home/screens/user_home_screen.dart';
+import 'package:gozem_clone/features/users/screen/user_home_screen.dart';
 import 'package:http/http.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.black,
         title: Container(
+          width: MediaQuery.of(context).size.width,
             child: Row(
           children: [
             Image.asset('assets/Icons/netflix_logo.png', width: 100),
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Positioned(
             top: 625,
-            left: 180,
+            left: 170,
             child: Column(
               children: [
                 Row(
@@ -95,12 +96,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       AnimatedContainer(
                         duration: Duration(milliseconds: 300),
                         margin: EdgeInsets.only(right: 5),
-                        width: 5,
-                        height: 5,
+                        
+                        width: _currentPageIndex == i ? 18:5,
+                        height: 6,
+                        
+
                         decoration: BoxDecoration(
+                          
+                          borderRadius: _currentPageIndex == i ? BorderRadius.circular(10):BorderRadius.circular(20),
+
                           color:
-                              _currentPageIndex == i ? Colors.red : Colors.grey,
-                          shape: BoxShape.circle,
+                              _currentPageIndex == i ? Colors.red  : Colors.grey,
+                          /* shape: BoxShape.circle, */
+                          shape: _currentPageIndex == i ? BoxShape.rectangle : BoxShape.rectangle
                         ),
                       ),
                   ],
@@ -134,22 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class Barre extends StatelessWidget {
-  Color couleur;
-  Barre(this.couleur);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.all(5),
-        width: 10,
-        height: 10,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: this.couleur,
-        ));
-  }
-}
 
 class GetstartedButton extends StatefulWidget {
   final Color couleur;
@@ -161,7 +154,7 @@ class GetstartedButton extends StatefulWidget {
 }
 
 class _GetstartedButtonState extends State<GetstartedButton> {
-  bool enable = false;
+  /* bool enable = false;
 
   @override
   void initState() {
@@ -184,7 +177,7 @@ class _GetstartedButtonState extends State<GetstartedButton> {
     } on Exception catch (e) {
       return false;
     }
-  }
+  } */
 
   bool loading = false;
   @override
@@ -220,12 +213,13 @@ class _GetstartedButtonState extends State<GetstartedButton> {
                 loading = !loading;
 
                 print(loading); */
+                
                 });
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: enable ? Colors.red : Colors.grey,
+                /* backgroundColor: Colors.red */
 
-                /*    backgroundColor: Colors.red, foregroundColor: Colors.red), */
+                   backgroundColor: Colors.red, foregroundColor: Colors.red
               ),
               child: child,
             )));
